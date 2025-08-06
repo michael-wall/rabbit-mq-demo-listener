@@ -29,7 +29,9 @@ public class RabbitMQListener{
     @Value("${RABBIT_MQ_ERROR_QUEUE_NAME}")
     private String rabbitMqErrorQueueName;
 	
-	private String hostname = "http://liferay:8080"; //Calling liferay service directly from the custom service...
+    //In Liferay PaaS we are calling the liferay service directly from the custom service...
+    // This will need to change outside of Liferay PaaS
+	private String hostname = "http://liferay:8080";
 	
 	@Value("${LISTENER_OAUTH_CLIENT_ID}")
 	private String oAuthClientId;
