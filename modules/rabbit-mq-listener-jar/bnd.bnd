@@ -1,0 +1,3 @@
+Bundle-Name: rabbit-mq-listener-jar
+Bundle-SymbolicName: com.mw.rabbit.mq.listener.jar
+Bundle-Version: 1.0.0
