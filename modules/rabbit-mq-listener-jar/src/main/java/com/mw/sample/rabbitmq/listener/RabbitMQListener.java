@@ -80,7 +80,7 @@ public class RabbitMQListener{
 							
 							 int statusCode = patch(id, input, oauthToken);
 							 
-							 if (statusCode == 200) { //TODO check which...
+							 if (statusCode == 200) {
 								 _log.info("Message processed as expected, moving to : " + rabbitMqProcessedQueueName);
 								 
 								 rabbitTemplate.send(rabbitMqProcessedQueueName, new Message(message.getBytes()));
