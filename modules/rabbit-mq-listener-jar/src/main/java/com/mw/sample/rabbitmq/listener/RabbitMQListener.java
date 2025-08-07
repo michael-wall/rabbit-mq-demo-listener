@@ -28,10 +28,9 @@ public class RabbitMQListener{
     
     @Value("${RABBIT_MQ_ERROR_QUEUE_NAME}")
     private String rabbitMqErrorQueueName;
-	
-    //In Liferay PaaS we are calling the liferay service directly from the custom service...
-    // This will need to change outside of Liferay PaaS
-	private String hostname = "http://liferay:8080";
+
+    @Value("${LIFERAY_BASE_URL}")
+	private String liferayBaseUrl;
 	
 	@Value("${LISTENER_OAUTH_CLIENT_ID}")
 	private String oAuthClientId;
@@ -105,7 +104,7 @@ public class RabbitMQListener{
     
     private int patch(long id, String input, String oauthToken) {
     	
-    	String endpoint = hostname + "/o/c/rabbittests/" + id;
+    	String endpoint = liferayBaseUrl + "/o/c/rabbittests/" + id;
         String patchData = "{ \"output\": \"" + input + " " + UUID.randomUUID().toString() +  "\" }";
 
     	try {
@@ -133,7 +132,7 @@ public class RabbitMQListener{
     
     private String getOAuthAccessToken() {
     	
-    	String endpoint = hostname + "/o/oauth2/token";
+    	String endpoint = liferayBaseUrl + "/o/oauth2/token";
     	String postData = "grant_type=client_credentials";
         String auth = oAuthClientId + ":" + oAuthClientSecret;
         String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
